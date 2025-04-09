@@ -16,6 +16,7 @@ function runOnTreadmill() {
   });
 }
 
+
 function liftWeights() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -27,19 +28,29 @@ function liftWeights() {
 
 // refactor this function to handle Promises using async/await instead of
   // .then and .catch
-function workout() {
-  stretch()
-    .then(runOnTreadmill)
-    .then(liftWeights)
-    .then(() => console.log("done working out"))
-    .catch((err) => console.log(err));
+// function workout() {
+//   stretch()
+//     .then(runOnTreadmill)
+//     .then(liftWeights)
+//     .then(() => console.log("done working out"))
+//     .catch((err) => console.log(err));
+// }
+async function workout() {
+  try {
+    await stretch()
+    await runOnTreadmill()
+    await liftWeights()
+    console.log('done working out ')
+
+  } catch (err) {
+    console.log(err)
+  }
 }
+// /* ============================ TEST YOUR CODE ============================
 
-/* ============================ TEST YOUR CODE ============================
-
-Run the file (`node phase-1.js`) and check your output against the expected
-output.
-*/
+// Run the file (`node phase-1.js`) and check your output against the expected
+// output.
+// */
 
 
 workout();
